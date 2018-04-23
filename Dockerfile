@@ -6,6 +6,9 @@ RUN groupadd -r node && useradd -m -g node node
 # Gosu
 ENV GOSU_VERSION 1.10
 
+# Meteor
+ENV METEOR_VERSION 1.5.2.2
+
 # MongoDB
 ENV MONGO_VERSION 3.4.9
 ENV MONGO_MAJOR 3.4
