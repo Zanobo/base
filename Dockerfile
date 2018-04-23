@@ -1,4 +1,4 @@
-FROM meteor/ubuntu:20160830T182201Z_0f378f5
+FROM debian:jessie
 MAINTAINER Reaction Commerce <admin@reactioncommerce.com>
 
 RUN groupadd -r node && useradd -m -g node node
@@ -26,6 +26,13 @@ ENV APP_SOURCE_DIR /app
 ENV APP_BUNDLE_DIR /app
 ENV BUILD_SCRIPTS_DIR /app
 
+RUN mkdir -p "$APP_SOURCE_DIR" \
+ && mkdir -p "$APP_BUNDLE_DIR" \
+ && chown -R node "$APP_SOURCE_DIR" \
+ && chown -R node "$APP_BUNDLE_DIR"
+ 
+RUN mkdir -p /app/bundle
+
 # Add entrypoint and build scripts
 COPY scripts $BUILD_SCRIPTS_DIR
 RUN chmod -R 750 $BUILD_SCRIPTS_DIR
@@ -33,9 +40,6 @@ RUN chmod -R 750 $BUILD_SCRIPTS_DIR
 # Define all --build-arg options
 ONBUILD ARG APT_GET_INSTALL
 ONBUILD ENV APT_GET_INSTALL $APT_GET_INSTALL
-
-ADD ./app /app
-RUN mkdir -p /app/bundle
 
 ONBUILD ARG NODE_VERSION
 ONBUILD ENV NODE_VERSION ${NODE_VERSION:-4.8.4}
