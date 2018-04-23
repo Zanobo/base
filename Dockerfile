@@ -29,6 +29,8 @@ ENV BUILD_SCRIPTS_DIR /app/build_scripts
 # Add entrypoint and build scripts
 COPY scripts $BUILD_SCRIPTS_DIR
 RUN chmod -R 750 $BUILD_SCRIPTS_DIR
+RUN mkdir -p $APP_SOURCE_DIR
+RUN mkdir -p $BUILD_SCRIPTS_DIR
 
 # Define all --build-arg options
 ONBUILD ARG APT_GET_INSTALL
