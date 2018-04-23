@@ -22,9 +22,9 @@ ENV PHANTOM_VERSION 2.1.1
 ENV REACTION_DOCKER_BUILD true
 
 # build directories
-ENV APP_SOURCE_DIR /opt/reaction/src
+ENV APP_SOURCE_DIR /app/src
 ENV APP_BUNDLE_DIR /app
-ENV BUILD_SCRIPTS_DIR /opt/build_scripts
+ENV BUILD_SCRIPTS_DIR /app/build_scripts
 
 # Add entrypoint and build scripts
 COPY scripts $BUILD_SCRIPTS_DIR
